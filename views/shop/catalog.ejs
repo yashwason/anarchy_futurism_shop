@@ -1,0 +1,35 @@
+<%- include ../partials/head %>
+
+<style>
+.popular-brands h2{
+    font-weight: 800;
+    font-size: 2em;
+    padding: 0 40px;
+    margin: 80px 0 -30px;
+}
+</style>
+
+<%- include ../partials/header %>
+
+<div class="products-wrapper">
+    <% for(let i=0; i < 10; i++){ %>
+
+    <%- include ./partials/product-card %>
+
+    <% } %>
+</div>
+
+<div class="popular-brands">
+    <h2>POPULAR BRANDS</h2>
+    <div class="brands-wrapper">
+        <% for(let i=0; i < 4; i++){ %>
+
+        <%- include ./partials/brand-card %>
+    
+        <% } %>
+    </div>
+</div>
+
+<%- include ../partials/footer %>
+
+<%- include ../partials/end %>

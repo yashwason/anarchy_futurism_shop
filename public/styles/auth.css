@@ -1,0 +1,26 @@
+form{
+    padding: var(--whitespace);
+    text-align: center;
+
+}
+
+input{
+    font-size: 1.15em;
+    display: block;
+    margin: 20px auto;
+    width: 40%;
+}
+
+form button{
+    margin-top: 50px;
+}
+
+form p{
+    margin-top: 50px;
+}
+
+form p a{
+    color: var(--cherryred);
+    font-weight: 800;
+    font-style: italic;
+}

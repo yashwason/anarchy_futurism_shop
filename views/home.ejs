@@ -1,0 +1,77 @@
+<%- include ./partials/head %>
+
+<!-- Page specific styles -->
+<link rel="stylesheet" type="text/css" href="/styles/home.css">
+
+<div class="hero">
+    <header>
+        <section id="logo-wrapper">
+            <a href="/">
+                <img src="/images/common/logos/black-logo.svg" alt="Anarchy Futurism logo">
+            </a>
+        </section>
+        <section id="general-nav-wrapper">
+            <nav>
+                <a href="/products/all">Products</a>
+                <a href="/products/men">Men</a>
+                <a href="/products/women">Women</a>
+                <a href="/products/kids">Kids</a>
+            </nav>
+        </section>
+        <section id="user-nav-wrapper">
+            <nav>
+                <a href="/signin"><i class="far fa-user"></i></a>
+                <a href="/wishlist"><i class="far fa-heart"></i></a>
+                <a href="/cart"><i class="fas fa-shopping-cart"></i></a>
+            </nav>
+        </section>
+    </header>
+
+    <div class="wrapper">
+        <img class="hero-left" src="/images/home/hero/hero-left.jpg" alt="Adidas-Y-3-KAIWA">
+        <div class="hero-middle-wrapper">
+            <h1>NIKE<span>AIR270</span></h1>
+            <img class="hero-middle" src="/images/home/hero/hero-main.png" alt="NIKE AIR270">
+        </div>
+        <img class="hero-right" src="/images/home/hero/hero-right.jpg" alt="New_Balance_X-90png">
+    </div>
+</div>
+
+<div class="popular-products">
+    <div class="title">
+        <h1>THE MOST<span>POPULAR</span></h1>
+    </div>
+    <div class="products-wrapper">
+        <% for(let i=0; i < 3; i++){ %>
+
+        <%- include ./shop/partials/product-card %>
+    
+        <% } %>
+    </div>
+</div>
+
+<div class="popular-brands">
+    <h2>POPULAR BRANDS</h2>
+    <div class="brands-wrapper">
+
+        <% for(let i=0; i < 4; i++){ %>
+
+        <%- include ./shop/partials/brand-card %>
+    
+        <% } %>
+
+    </div>
+</div>
+
+<div class="banner">
+    <img src="/images/home/last-section.svg" alt="Future Is Here">
+</div>
+
+
+<%- include ./partials/footer %>
+
+<!-- basicScroll -->
+<script src="/lib/basicscroll.min.js"></script>
+<script src="/scripts/home.js"></script>
+
+<%- include ./partials/end %>

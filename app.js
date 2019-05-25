@@ -15,7 +15,9 @@ const express = require('express'),
 
 
 // Router files
-const routes = require(`./routes/index`);
+const ROUTES = require(`./routes/index`),
+    PRODUCTSROUTES = require(`./routes/category`),
+    PRODUCTROUTES = require(`./routes/product`);
 
 
 // App configurations
@@ -27,7 +29,9 @@ app.use(bodyParser.json());
 
 
 // Using routes
-app.use(routes);
+app.use(ROUTES);
+app.use(`/product`, PRODUCTROUTES);
+app.use(`/products`, PRODUCTSROUTES);
 
 
 // Server setup

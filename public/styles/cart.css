@@ -1,0 +1,117 @@
+body{
+    background: #fff;
+}
+
+.products{
+    padding: var(--whitespace);
+}
+
+.product{
+    display: grid;
+    grid-template-columns: 1fr 0.8fr 0.5fr 0.2fr;
+    align-items: center;
+}
+
+.image-wrapper{
+    display: grid;
+    align-items: center;
+    text-align: center;
+    justify-items: center;
+}
+
+.image-wrapper img{
+    width: 100%;
+}
+
+.info{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 30px;
+}
+
+.brand-name{
+    font-size: 2em;
+    font-style: italic;
+    font-weight: 800;
+}
+
+.product-name{
+    font-size: 1.05em;
+}
+
+.quantity-wrapper{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+    align-items: center;
+    text-align: center;
+}
+
+.reduce,
+.increase{
+    text-align: center;
+    border: 1px solid var(--black);
+    border-radius: 50%;
+    padding: 5px 9px;
+    cursor: pointer;
+}
+
+.quantity{
+    font-weight: 800;
+    font-size: 1.3em;
+}
+
+.details{
+    grid-column: span 2;
+}
+
+.details > *{
+    margin-right: 7px;
+}
+
+.amount-wrapper{
+    text-align: center;
+}
+
+.amount{
+    font-size: 2.2em;
+    font-style: italic;
+    font-weight: 800;
+    color: var(--royalblue);
+    padding: 10px;
+    display: inline-block;
+}
+
+.remove-item{
+    text-align: center;
+    justify-self: start;
+}
+
+.remove-item a{
+    padding: 25px;
+    border-radius: 8px;
+    color: #fff;
+    background: var(--royalblue);
+    display: inline-block;
+}
+
+.order-summary{
+    background: var(--offwhite);
+    padding: var(--whitespace);
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-gap: 40px;
+    justify-items: center;
+    align-items: center;
+}
+
+.order-summary p{
+    justify-self: end;
+    font-style: italic;
+    font-size: 2.15em;
+    color: var(--royalblue);
+}
+
+.order-summary .custom-link2{
+    justify-self: start;
+}

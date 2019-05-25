@@ -1,0 +1,104 @@
+.hero{
+    background: var(--lightgrey);
+    height: 100vh;
+}
+
+.hero .wrapper{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    overflow: hidden;
+}
+
+.hero-left{
+    justify-self: start;
+    transform: translateX(-35%);
+    width: 350px;
+}
+
+.hero-right{
+    justify-self: end;
+    transform: translateX(35%);
+    width: 350px;
+}
+
+.hero-middle-wrapper{
+    position: relative;
+}
+
+.hero-middle-wrapper h1{
+    color: #fff;
+    font-size: 5.8em;
+    position: absolute;
+    left: 0;
+    top: 50px;
+}
+
+.hero-middle-wrapper .hero-middle{
+    position: relative;
+
+    /* Used by basicScroll */
+    transform: scale(var(--scale));
+    opacity: var(--opacity);
+}
+
+.hero-middle-wrapper h1 span{
+    display: block;
+    font-size: 0.6em;
+}
+
+.popular-products{
+    padding: var(--whitespace);
+    position: relative;
+    background: var(--offwhite);
+}
+
+.popular-products .title{
+    display: inline-block;
+    transform: rotate(-90deg);
+    position: absolute;
+    left: -200px;
+    margin: 15% 0 0;
+    padding: 0 50px;
+}
+
+.popular-products h1{
+    color: var(--darkblue);
+    font-size: 6em;
+    background: url('/images/common/misc/shapes-small-bg.svg') no-repeat;
+    background-size: contain;
+    background-position: left center;
+    padding: 0 50px;
+}
+
+.popular-products h1 span{
+    display: block;
+}
+
+.products-wrapper{
+    margin-left: 250px;
+    padding: 0;
+}
+
+.popular-brands{
+    padding: var(--whitespace);
+}
+
+.popular-brands h2{
+    font-weight: 800;
+    font-size: 2em;
+}
+
+.banner{
+    background: var(--royalblue);
+    text-align: center;
+    overflow: hidden;
+}
+
+.banner img{
+    width: 100%;
+
+    /* Used by BasicScroll */
+    opacity: var(--opacity);
+    transform: scale(var(--scale));
+}

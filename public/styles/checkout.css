@@ -1,0 +1,35 @@
+.wrapper{
+    padding: var(--whitespace);
+    text-align: center;
+}
+
+h2{
+    font-size: 2em;
+    font-weight: 800;
+}
+
+.one,
+.two,
+.three{
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    grid-gap: 30px;
+    margin: 30px auto;
+    padding: 0 20%;
+}
+
+.two{
+    grid-template-columns: repeat(2, 1fr);
+}
+.three{
+    grid-template-columns: repeat(3, 1fr);
+}
+
+input{
+    width: 100%;
+}
+
+button{
+    margin-top: 50px;
+}

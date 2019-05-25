@@ -1,0 +1,34 @@
+<%- include ../partials/head %>
+
+<link rel="stylesheet" type="text/css" href="/styles/checkout.css">
+
+<%- include ../partials/header %>
+
+<div class="wrapper">
+    <h2>SHIPPING DETAILS</h2>
+
+    <form action="" method="">
+        <div class="two">
+            <input type="text" name="f_name" id="f_name" placeholder="First Name" required>
+            <input type="text" name="l_name" id="l_name" placeholder="Last Name" required>
+        </div>
+        <div class="one">
+            <input type="text" name="address" id="address" placeholder="Address" required>
+        </div>
+        <div class="three">
+            <input type="text" name="city" id="city" placeholder="City" required>
+            <input type="text" name="postal_code" id="postal_code" placeholder="Postal Code" required>
+            <input type="text" name="country" id="country" placeholder="Country" required>
+        </div>
+        <div class="two">
+            <input type="email" name="email" id="email" placeholder="E-mail" required>
+            <input type="number" name="mobile" id="mobile" placeholder="Phone" required>
+        </div>
+
+        <button class="custom-link2" type="submit">Pay Rs. 1240</button>
+    </form>
+</div>
+
+<%- include ../partials/footer %>
+
+<%- include ../partials/end %>
