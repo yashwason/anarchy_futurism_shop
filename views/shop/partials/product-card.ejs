@@ -1,16 +1,18 @@
 <div class="product-card">
     <div class="titles">
-        <h2>ADIDAS</h2>
-        <h3>Falcon shoes</h3>
+        <h2 class="brand-name"><%= product.brandName %></h2>
+        <h3 class="item-name"><%= product.itemName %></h3>
     </div>
-    <img class="image" src="/images/home/products/adidasFALCON.svg" alt="Adidas Falcon">
+    <img class="image" src="<%= product.imagePath %>" alt="<%= `${product.brandName} ${product.itemName} `%>">
     <div class="options">
-        <span class="price">Rs. 1270</span>
-        <a href="/add-to-wishlist/productid"><i class="far fa-heart"></i></a>
-        <a href="/add-to-cart/productid"><i class="fas fa-shopping-cart"></i></a>
+        <span class="price"><%= product.price %></span>
+        <a href="/add-to-wishlist/<%= product._id %>"><i class="far fa-heart"></i></a>
+        <a href="/add-to-cart/<%= product._id %>"><i class="fas fa-shopping-cart"></i></a>
     </div>
     <div class="addit">
-        <p>For Women, Made in China, 2018</p>
-        <a href="/product/id" class="custom-link">View Product</a>
+        <p>For <span class="gender"><%= product.gender %></span>
+            , Made in <span class="mfg-country"><%= product.mfgCountry %></span>
+            , <%= product.mfgYear %></p>
+        <a href="/product/<%= product._id %>" class="custom-link">View Product</a>
     </div>
 </div>

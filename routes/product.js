@@ -1,12 +1,16 @@
 const express = require(`express`),
-    router = express.Router();
+    router = express.Router(),
+    Product = require(`../models/product`);
 
-router.get(`/:productId`, (req, res) => {
+router.get(`/:productId`, async (req, res) => {
     let productId = req.params.productId;
 
+    let product = await Product.findById(productId);
+
     res.render(`shop/product`, {
-        docTitle: `Product Name`,
-        pageHeading: `YOUR NIKE AIRMAX 270`
+        docTitle: `${product.brandName.toUpperCase()} ${product.itemName.toUpperCase()}`,
+        pageHeading: `YOUR ${product.brandName} ${product.itemName}`,
+        product: product.toObject()
     });
 });
 

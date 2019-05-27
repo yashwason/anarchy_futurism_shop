@@ -1,13 +1,25 @@
 const express = require(`express`),
-    router = express.Router();
+    router = express.Router(),
+    middleware = require(`../middleware`),
+    Product = require(`../models/product`),
+    Brand = require(`../models/brand`),
+    Cart = require(`../models/cart`);
 
-router.get(`/`, (req, res) => {
+
+router.get(`/`, async (req, res) => {
+    let products = await Product.find({}).sort({piecesSold: -1}).limit(3);
+    let brands = await Brand.find({}).limit(4);
+
     res.render(`home`, {
-        docTitle: `Welcome`
+        docTitle: `Welcome`,
+        products: products,
+        brands: brands
     });
 });
 
-router.get(`/wishlist`, (req, res) => {
+router.get(`/wishlist`,
+middleware.isLoggedIn,
+(req, res) => {
     res.render(`wishlist`, {
         docTitle: `Wishlist`,
         pageHeading: `YOUR PRODUCT WISHLIST`
@@ -15,30 +27,69 @@ router.get(`/wishlist`, (req, res) => {
 });
 
 router.get(`/cart`, (req, res) => {
-    res.render(`checkout/cart`, {
+    // Not passing req.session.cart into the view as it's a res.local (app.js)
+    if(req.session.cart){
+        return res.render(`checkout/cart`, {
+            docTitle: `Your Shopping Cart`,
+            pageHeading: `SHOPPING CART`,
+            products: new Cart(req.session.cart).generateItemsArray()
+        });
+    }
+    return res.render(`checkout/cart`, {
         docTitle: `Your Shopping Cart`,
-        pageHeading: `SHOPPING CART`
+        pageHeading: `SHOPPING CART`,
+        products: null
     });
 });
 
-router.get(`/checkout`, (req, res) => {
+router.get(`/add-to-cart/:id`, (req, res) => {
+    let productId = req.params.id;
+    let cart = new Cart(req.session.cart ? req.session.cart : {});
+
+    Product.findById(productId)
+    .then((item) => {
+        cart.addItem(productId, item);
+        req.session.cart = cart;
+        res.redirect(`/cart`);
+    })
+    .catch((err) => {
+        console.log(`Error finding product while adding to cart. ${err}`);
+    });
+});
+
+router.get(`/reduce-by-one/:id`, (req, res) => {
+    let productId = req.params.id;
+    let cart = new Cart(req.session.cart ? req.session.cart : {});
+
+    cart.reduceByOne(productId);
+    req.session.cart = cart;
+    res.redirect(`/cart`);
+});
+
+router.get(`/increase-by-one/:id`, (req, res) => {
+    let productId = req.params.id;
+    let cart = new Cart(req.session.cart ? req.session.cart : {});
+
+    cart.increaseByOne(productId);
+    req.session.cart = cart;
+    res.redirect(`/cart`);
+});
+
+router.get(`/remove-from-cart/:id`, (req, res) => {
+    let productId = req.params.id;
+    let cart = new Cart(req.session.cart ? req.session.cart : {});
+
+    cart.removeItem(productId);
+    req.session.cart = cart;
+    res.redirect(`/cart`);
+});
+
+router.get(`/checkout`,
+middleware.isLoggedIn,
+(req, res) => {
     res.render(`checkout/checkout`, {
         docTitle: `Checkout`,
         pageHeading: `CHECKOUT`
-    });
-});
-
-router.get(`/signin`, (req, res) => {
-    res.render(`auth/signin`, {
-        docTitle: `Account Sign In`,
-        pageHeading: `LOGIN TO YOUR ACCOUNT`
-    })
-});
-
-router.get(`/signup`, (req, res) => {
-    res.render(`auth/signup`, {
-        docTitle: `Register`,
-        pageHeading: `CREATE A NEW ACCOUNT`
     });
 });
 

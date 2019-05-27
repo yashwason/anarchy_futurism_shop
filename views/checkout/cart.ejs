@@ -4,94 +4,46 @@
 
 <%- include ../partials/header %>
 
+<% if(!products.length > 0){ %>
+<h2>No Items in Cart</h2>
+<% } else { %>
 <div class="products">
+    <% products.forEach((product) => { %>
     <div class="product">
         <div class="image-wrapper">
-            <img src="/images/products/Nike-Air270-white.svg" alt="Nike-Air270-white">
+            <img src="<%= product.item.imagePath %>" alt="<%=`${product.item.brandName} ${product.item.itemName}`%>">
         </div>
         <div class="info">
             <section class="meta">
-                <p class="brand-name">NIKE</p>
-                <p class="product-name">Air Max 270</p>
+                <p class="brand-name"><%= product.item.brandName %></p>
+                <p class="product-name"><%= product.item.itemName %></p>
             </section>
             <div class="quantity-wrapper">
-                <span class="reduce"><i class="fas fa-minus"></i></span>
-                <span class="quantity">1</span>
-                <span class="increase"><i class="fas fa-plus"></i></span>
+                <a class="reduce" href="/reduce-by-one/<%= product.item._id %>"><i class="fas fa-minus"></i></a>
+                <span class="quantity"><%= product.qty %></span>
+                <a class="increase" href="/increase-by-one/<%= product.item._id %>"><i class="fas fa-plus"></i></a>
             </div>
             <div class="details">
-                <span class="product-category">For Men,</span>
-                <span class="size">Size: EU42,</span>
-                <span class="price">Price: Rs. 1240</span>
+                <span class="gender">For <%= product.item.gender %>,</span>
+                <span class="size">Size: Feature Not Supported,</span>
+                <span class="price">Price: Rs.<%= product.item.price %></span>
             </div>
         </div>
         <div class="amount-wrapper">
-            <p class="amount">Rs. 1240</p>
+            <p class="amount">Rs. <%= product.price %></p>
         </div>
         <div class="remove-item">
-            <a href="/remove-from-cart/productid" class="remove"><i class="fas fa-trash"></i></a>
+            <a href="/remove-from-cart/<%= product.item._id %>" class="remove"><i class="fas fa-trash"></i></a>
         </div>
     </div>
-    <div class="product">
-        <div class="image-wrapper">
-            <img src="/images/products/Nike-Air270-white.svg" alt="Nike-Air270-white">
-        </div>
-        <div class="info">
-            <section class="meta">
-                <p class="brand-name">NIKE</p>
-                <p class="product-name">Air Max 270</p>
-            </section>
-            <div class="quantity-wrapper">
-                <span class="reduce"><i class="fas fa-minus"></i></span>
-                <span class="quantity">1</span>
-                <span class="increase"><i class="fas fa-plus"></i></span>
-            </div>
-            <div class="details">
-                <span class="product-category">For Men,</span>
-                <span class="size">Size: EU42,</span>
-                <span class="price">Price: Rs. 1240</span>
-            </div>
-        </div>
-        <div class="amount-wrapper">
-            <p class="amount">Rs. 1240</p>
-        </div>
-        <div class="remove-item">
-            <a href="/remove-from-cart/productid" class="remove"><i class="fas fa-trash"></i></a>
-        </div>
-    </div>
-    <div class="product">
-        <div class="image-wrapper">
-            <img src="/images/products/Nike-Air270-white.svg" alt="Nike-Air270-white">
-        </div>
-        <div class="info">
-            <section class="meta">
-                <p class="brand-name">NIKE</p>
-                <p class="product-name">Air Max 270</p>
-            </section>
-            <div class="quantity-wrapper">
-                <span class="reduce"><i class="fas fa-minus"></i></span>
-                <span class="quantity">1</span>
-                <span class="increase"><i class="fas fa-plus"></i></span>
-            </div>
-            <div class="details">
-                <span class="product-category">For Men,</span>
-                <span class="size">Size: EU42,</span>
-                <span class="price">Price: Rs. 1240</span>
-            </div>
-        </div>
-        <div class="amount-wrapper">
-            <p class="amount">Rs. 1240</p>
-        </div>
-        <div class="remove-item">
-            <a href="/remove-from-cart/productid" class="remove"><i class="fas fa-trash"></i></a>
-        </div>
-    </div>
+    <% }); %>
 </div>
 
 <div class="order-summary">
-    <p>TOTAL AMOUNT: Rs. 1240</p>
+    <p>TOTAL AMOUNT: Rs.<%= cartSession.totalPrice %></p>
     <a href="/checkout" class="custom-link2">Checkout</a>
 </div>
+<% } %>
 
 <%- include ../partials/footer %>
 

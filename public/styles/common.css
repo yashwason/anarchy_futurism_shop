@@ -94,14 +94,14 @@ input{
     transition-timing-function: ease-in-out;
 }
 
-.product-card .titles h2{
+.product-card .titles .brand-name{
     font-weight: 800;
     font-style: italic;
     font-size: 1.65em;
     text-transform: uppercase;
 }
 
-.product-card .titles h3{
+.product-card .titles .item-name{
     font-size: 0.95em;
     text-transform: capitalize;
 }
@@ -150,6 +150,11 @@ input{
     font-weight: 800;
 }
 
+.product-card .addit .gender,
+.product-card .addit .mfg-country{
+    text-transform: capitalize;
+}
+
 .product-card .addit .custom-link{
     font-size: 0.95em;
     margin-top: 15px;
@@ -194,6 +199,7 @@ input{
     right: 10px;
     font-weight: 300;
     font-size: 0.9em;
+    text-transform: uppercase;
 }
 
 .brand-card:hover{
@@ -242,8 +248,46 @@ header{
     background-size: 100% 90px
 }
 
-#user-nav-wrapper nav a{
+#user-nav-wrapper nav > div{
+    display: inline-block;
+    position: relative;
     margin-right: 40px;
+}
+
+#user-nav-wrapper nav > a{
+    margin-right: 40px;
+}
+
+#user-nav-wrapper nav .dropdown{
+    position: absolute;
+    z-index: -5;
+    opacity: 0;
+    transform: translateY(-30px);
+    top: 30px;
+    -webkit-box-shadow: 10px 0px 20px 0px rgba(0,0,0,0.04);
+    -moz-box-shadow: 10px 0px 20px 0px rgba(0,0,0,0.04);
+    box-shadow: 10px 0px 20px 0px rgba(0,0,0,0.04);
+    padding: 20px 15px;
+    width: 150px;
+    right: -10px;
+    text-align: center;
+    border-radius: 8px;
+    background: #fff;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    transition: all 0.35s; 
+}
+
+#user-nav-wrapper nav .dropdown a{
+    color: var(--royalblue);
+    margin-bottom: 15px;
+    font-weight: 800;
+}
+
+#user-nav-wrapper nav > div:hover .dropdown{
+    opacity: 1;
+    transform: translateY(0);
+    z-index: 10;
 }
 
 #page-heading{
@@ -257,4 +301,28 @@ header{
     font-style: italic;
     font-size: 1.8em;
     text-transform: uppercase;
+}
+
+.header-flash{
+    font-size: 1.35em;
+    background: #fff;
+    font-style: italic;
+    font-weight: 800;
+    grid-column: span 3;
+    text-align: center;
+    text-transform: uppercase;
+}
+.header-flash.error{
+    color: var(--cherryred);
+}
+.header-flash.success{
+    color: var(--royalblue);
+}
+
+
+/* MEDIA QUERIES */
+@media (min-width: 1650px){
+    #user-nav-wrapper{
+        background-size: cover;
+    }   
 }

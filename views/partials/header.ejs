@@ -1,4 +1,12 @@
 <header>
+    <% if(successMsgs){ %>
+    <section class="header-flash success">
+        <% successMsgs.forEach((msg) => { %>
+        <p><%= msg %></p>
+        <% }); %>
+    </section>
+    <% } %>
+
     <section id="logo-wrapper">
         <a href="/">
             <img src="/images/common/logos/black-logo.svg" alt="Anarchy Futurism logo">
@@ -9,7 +17,15 @@
     </section>
     <section id="user-nav-wrapper">
         <nav>
-            <a href="/signin"><i class="far fa-user"></i></a>
+            <div>
+                <a href="/user/signin"><i class="far fa-user"></i></a>
+                <% if(userIsLoggedIn){ %>
+                <section class="dropdown">
+                    <a href="/user/orders">Your Orders <i class="fas fa-tags"></i></a>
+                    <a href="/user/logout">Logout <i class="fas fa-sign-out-alt"></i></a>
+                </section>
+                <% } %>
+            </div>
             <a href="/wishlist"><i class="far fa-heart"></i></a>
             <a href="/cart"><i class="fas fa-shopping-cart"></i></a>
         </nav>

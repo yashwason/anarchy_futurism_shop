@@ -1,2 +1,4 @@
 node_modules/
 design.xd
+process.env
+credentials.txt
