@@ -24,6 +24,9 @@ require(`./config/passport`);
 
 // Router files
 const INDEXROUTES = require(`./routes/index`),
+    CARTROUTES = require(`./routes/cart`),
+    CHECKOUTROUTES = require(`./routes/checkout`),
+    WISHLISTROUTES = require(`./routes/wishlist`),
     PRODUCTSROUTES = require(`./routes/category`),
     PRODUCTROUTES = require(`./routes/product`),
     BRANDROUTES = require(`./routes/brand`),
@@ -57,6 +60,9 @@ app.use((req, res, next) => {
 
 // Using routes
 app.use(INDEXROUTES);
+app.use(CARTROUTES);
+app.use(WISHLISTROUTES);
+app.use(CHECKOUTROUTES);
 app.use(`/product`, PRODUCTROUTES);
 app.use(`/products`, PRODUCTSROUTES);
 app.use(`/user`, USERROUTES);

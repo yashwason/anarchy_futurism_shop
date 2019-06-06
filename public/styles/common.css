@@ -36,6 +36,11 @@ h1{
     z-index: 2 !important;
 }
 
+h2{
+    font-weight: 800;
+    font-size: 2em;
+}
+
 button{
     border: none;
     outline: none;

@@ -84,11 +84,6 @@
     padding: var(--whitespace);
 }
 
-.popular-brands h2{
-    font-weight: 800;
-    font-size: 2em;
-}
-
 .banner{
     background: var(--royalblue);
     text-align: center;

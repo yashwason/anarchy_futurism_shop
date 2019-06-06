@@ -4,10 +4,13 @@
 
 <%- include ../partials/header %>
 
-<% if(!products.length > 0){ %>
-<h2>No Items in Cart</h2>
-<% } else { %>
 <div class="products">
+<% if(!products){ %>
+<div class="no-items">
+    <h2>No Items in Cart</h2>
+    <a href="/products/all" class="custom-link">SHOP WITH US</a>
+</div>
+<% } else { %>
     <% products.forEach((product) => { %>
     <div class="product">
         <div class="image-wrapper">

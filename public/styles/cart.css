@@ -2,6 +2,14 @@ body{
     background: #fff;
 }
 
+.no-items{
+    text-align: center;
+}
+
+.no-items .custom-link{
+    margin-top: 50px;
+}
+
 .products{
     padding: var(--whitespace);
 }

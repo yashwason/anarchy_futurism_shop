@@ -1,4 +1,11 @@
 <header>
+    <% if(errMsgs){ %>
+    <section class="header-flash error">
+        <% errMsgs.forEach((msg) => { %>
+        <p><%= msg %></p>
+        <% }); %>
+    </section>
+    <% } %>
     <% if(successMsgs){ %>
     <section class="header-flash success">
         <% successMsgs.forEach((msg) => { %>
