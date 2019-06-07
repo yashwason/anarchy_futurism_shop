@@ -2,7 +2,8 @@ const express = require(`express`),
     router = express.Router(),
     csrf = require(`csurf`),
     passport = require(`passport`),
-    middleware = require(`../middleware`);
+    middleware = require(`../middleware`),
+    Order = require(`../models/order`);
 
 
 const csrfProtection = csrf();
@@ -53,14 +54,24 @@ passport.authenticate(`local-signup`, {
 
 router.get(`/orders`,
 middleware.isLoggedIn,
-(req, res, next) => {
-    res.send(`Page Under Development`);
+(req, res) => {
+    Order.find({user_id: req.user.id})
+    .then((orders) => {
+        res.render(`orders`, {
+            docTitle: `Your Orders`,
+            pageHeading: `YOUR ORDER HISTORY`,
+            orders
+        });
+    })
+    .catch((err) => {
+        console.log(`Error finding orders in DB. Error: ${err}`);
+    });
 });
 
 
 router.get(`/logout`,
 middleware.isLoggedIn,
-(req, res, next) => {
+(req, res,) => {
     req.logout();
     req.flash(`success`, `Successfully logged out!`);
     res.redirect(`/`);

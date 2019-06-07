@@ -1,0 +1,44 @@
+.orders-wrapper{
+    padding: var(--whitespace);
+    width: 65%;
+    margin: 0 auto;
+}
+
+.order-card{
+    background: #fff;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 25px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    transition: transform 0.15s;
+    transition-timing-function: ease-in-out;
+}
+
+.order-card .details h2,
+.order-card .price h2{
+    font-weight: 800;
+    font-style: italic;
+    font-size: 1.65em;
+    color: var(--royalblue);
+    text-transform: uppercase;
+}
+.order-card .price h2{
+    color: var(--cherryred);
+    font-size: 2em;
+}
+
+.order-card .details h3{
+    color: var(--royalblue);
+}
+
+.order-card .details p{
+    font-weight: 800;
+    margin-top: 15px;
+}
+
+.order-card .price{
+    text-align: center;
+    display: grid;
+    align-items: center;
+}

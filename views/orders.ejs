@@ -1,0 +1,25 @@
+<%- include ./partials/head %>
+
+<!-- Page specific stylesheet -->
+<link rel="stylesheet" href="/styles/orders.css" type="text/css">
+
+<%- include ./partials/header %>
+
+<div class="orders-wrapper">
+    <% if(orders.length === 0){ %>
+    <div class="no-items">
+        <h2>No Orders Yet</h2>
+        <a href="/products/all" class="custom-link">SHOP WITH US</a>
+    </div>
+    <% } else { %>
+    
+    <% orders.forEach((order) => { %>
+        <%- include ./shop/partials/order-card %>
+    <% }); %>
+
+    <% } %>
+</div>
+
+<%- include ./partials/footer %>
+
+<%- include ./partials/end %>

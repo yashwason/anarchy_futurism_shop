@@ -51,6 +51,7 @@
     padding: var(--whitespace);
     position: relative;
     background: var(--offwhite);
+    overflow-x: hidden;
 }
 
 .popular-products .title{
@@ -63,7 +64,7 @@
 }
 
 .popular-products h1{
-    color: var(--darkblue);
+    color: var(--royalblue);
     font-size: 6em;
     background: url('/images/common/misc/shapes-small-bg.svg') no-repeat;
     background-size: contain;

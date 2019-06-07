@@ -14,12 +14,14 @@
     <section id="user-nav-wrapper">
         <nav>
             <div>
-                <a href="/user/signin"><i class="far fa-user"></i></a>
                 <% if(userIsLoggedIn){ %>
+                <span><i class="far fa-user"></i></span>
                 <section class="dropdown">
                     <a href="/user/orders">Your Orders <i class="fas fa-tags"></i></a>
                     <a href="/user/logout">Logout <i class="fas fa-sign-out-alt"></i></a>
                 </section>
+                <% } else{ %>
+                <a href="/user/signin"><i class="far fa-user"></i></a>
                 <% } %>
             </div>
             <a href="/wishlist"><i class="far fa-heart"></i></a>

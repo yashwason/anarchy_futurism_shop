@@ -3,7 +3,7 @@
         <h2 class="brand-name"><%= product.brandName %></h2>
         <h3 class="item-name"><%= product.itemName %></h3>
     </div>
-    <img class="image" src="<%= product.imagePath %>" alt="<%= `${product.brandName} ${product.itemName} `%>">
+    <img class="image" src="<%= product.verticalImagePath %>" alt="<%= `${product.brandName} ${product.itemName} `%>">
     <div class="options">
         <span class="price">Rs.<%= product.price %></span>
         <a href="/add-to-wishlist/<%= product._id %>"><i class="far fa-heart"></i></a>

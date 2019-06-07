@@ -7,6 +7,7 @@ const express = require('express'),
     bodyParser = require(`body-parser`),
     mongoose = require(`mongoose`),
     session = require(`express-session`),
+    MongoStore = require(`connect-mongo`)(session),
     passport = require(`passport`),
     flash = require(`connect-flash`);
 
@@ -42,7 +43,12 @@ app.use(bodyParser.json());
 app.use(session({
     secret: `This is Anarchy Futurism people! Project started in 2019`,
     saveUninitialized: false,
-    resave: false
+    resave: false,
+    store: new MongoStore({
+        mongooseConnection: mongoose.connection,
+        ttl: 3 * 24 * 60 * 60 // 3 days
+    }),
+    cookie: {maxAge: 3 * 24 * 60 * 60 * 1000} // 3 days
 }));
 app.use(flash());
 app.use(passport.initialize());

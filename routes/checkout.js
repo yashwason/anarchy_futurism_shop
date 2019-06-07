@@ -2,6 +2,7 @@ const express = require(`express`),
     router = express.Router(),
     Order = require(`../models/order`),
     Cart = require(`../models/cart`),
+    Product = require(`../models/product`),
     middleware = require(`../middleware`),
     instance = require(`../config/razorpay`);
 
@@ -9,8 +10,13 @@ const express = require(`express`),
 router.get(`/checkout`,
 middleware.isLoggedIn,
 async (req, res) => {
+    let cart = new Cart(req.session.cart);
+    let items = [];
+    for(let id in cart.items){
+        items.push(id);
+    }
     let order = await Order.create({
-        items: new Cart(req.session.cart).generateItemsArray(),
+        items: items,
 		user_id: req.user.id,
         amount: req.session.cart.totalPrice
     });
@@ -60,6 +66,19 @@ async (req, res) => {
         {new: true})
     .then((order) => {
         req.session.cart = {};
+        for(let i=0; i<order.items.length; i++){
+            Product.findByIdAndUpdate(
+                order.items[i],
+                {$inc: {piecesSold: 1}},
+                {new: true})
+            .then((updatedProduct) => {
+                console.log(updatedProduct);
+            })
+            .catch((err) => {
+                console.log(`Error increasing pieces sold of product with ID: ${order.items[i]}`);
+                console.log(`Error: ${err}`);
+            });
+        }
         return res.redirect(`/user/orders`);
     })
     .catch((err) => {

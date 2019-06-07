@@ -1,0 +1,11 @@
+<div class="order-card">
+    <div class="details">
+        <h2>Order ID: <%= order.order_id %></h2>
+        <h3>Payment ID: <%= order.payment_id %></h3>
+        <h3>Items Ordered: <%= order.items.length %></h3>
+        <p>Ordered On: <%= Date(order.created_at).toString() %></p>
+    </div>
+    <div class="price">
+        <h2>Rs. <%= order.amount %></h2>
+    </div>
+</div>

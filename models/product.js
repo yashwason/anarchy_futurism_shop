@@ -7,7 +7,8 @@ const ProductSchema = new mongoose.Schema({
     gender: {type: String, required: true},
     mfgCountry: {type: String, required: true},
     mfgYear: {type: Number, required: true, default: new Date().getFullYear()},
-    imagePath: {type: String, required: true},
+    verticalImagePath: {type: String, required: true},
+    horizontalImagePath: {type: String, required: true},
     piecesSold: {type: Number, default: 0},
     sizes: {
         US: [Number],
