@@ -5,7 +5,7 @@
 <%- include ../partials/header %>
 
 <div class="products">
-<% if(!products){ %>
+<% if(!products || products.length === 0){ %>
 <div class="no-items">
     <h2>No Items in Cart</h2>
     <a href="/products/all" class="custom-link">SHOP WITH US</a>

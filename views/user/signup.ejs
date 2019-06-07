@@ -2,7 +2,31 @@
 
 <link rel="stylesheet" type="text/css" href="/styles/auth.css">
 
-<%- include ../partials/header %>
+<header>
+    <section id="logo-wrapper">
+        <a href="/">
+            <img src="/images/common/logos/black-logo.svg" alt="Anarchy Futurism logo">
+        </a>
+    </section>
+    <section id="page-heading">
+        <h1><%= pageHeading %></h1>
+    </section>
+    <section id="user-nav-wrapper">
+        <nav>
+            <div>
+                <a href="/user/signin"><i class="far fa-user"></i></a>
+                <% if(userIsLoggedIn){ %>
+                <section class="dropdown">
+                    <a href="/user/orders">Your Orders <i class="fas fa-tags"></i></a>
+                    <a href="/user/logout">Logout <i class="fas fa-sign-out-alt"></i></a>
+                </section>
+                <% } %>
+            </div>
+            <a href="/wishlist"><i class="far fa-heart"></i></a>
+            <a href="/cart"><i class="fas fa-shopping-cart"></i></a>
+        </nav>
+    </section>
+</header>
 
 <form action="/user/signup" method="POST">
     <input type="email" name="email" id="email" placeholder="E-mail" required>
