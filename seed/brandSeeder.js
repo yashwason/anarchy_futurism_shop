@@ -1,7 +1,6 @@
 require(`dotenv`).config({path: `../process.env`});
 
-const mongoose = require(`mongoose`),
-    Brand = require(`../models/brand`);
+const Brand = require(`../models/brand`);
 
 // DB Setup
 require(`../config/mongoose`);
