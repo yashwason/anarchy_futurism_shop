@@ -13,10 +13,7 @@ const express = require('express'),
 
     
 // DB Setup
-mongoose.connect(process.env.DB_URL, {
-    useNewUrlParser: true
-});
-mongoose.connection.on(`connected`, () => { console.log(`DB has connected`); });
+require(`./config/mongoose`);
 
 
 // Configurating PassportJs for authentication
