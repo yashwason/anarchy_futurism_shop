@@ -3,9 +3,8 @@ require(`dotenv`).config({path:`../process.env`});
 const mongoose = require(`mongoose`),
     Product = require(`../models/product`);
 
-mongoose.connect(process.env.DB_URL, {
-    useNewUrlParser: true
-});
+// DB Setup
+require(`../config/mongoose`);
 
 let products = [
     new Product({
