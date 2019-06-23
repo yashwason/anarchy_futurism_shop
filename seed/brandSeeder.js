@@ -1,15 +1,9 @@
 require(`dotenv`).config({path: `../process.env`});
 
-const mongoose = require(`mongoose`),
-    Brand = require(`../models/brand`);
+const Brand = require(`../models/brand`);
 
 // DB Setup
-mongoose.connect(process.env.DB_URL, {
-    useNewUrlParser: true,
-    dbName: process.env.DB_NAME
-});
-
-mongoose.connection.on(`connected`, () => { console.log(`DB has connected`); });
+require(`../config/mongoose`);
 
 
 let brands = [

@@ -212,11 +212,15 @@ input{
 
 header{
     display: grid;
-    grid-template-columns: auto 1fr 1fr;
+    grid-template-columns: auto 1fr auto;
     justify-content: center;
     height: 100px;
     position: relative;
     color: var(--black);
+}
+
+#burger-menu-wrapper{
+    display: none;
 }
 
 #logo-wrapper{
@@ -330,4 +334,124 @@ header{
     #user-nav-wrapper{
         background-size: cover;
     }   
+}
+
+@media (max-width: 1400px){
+    #user-nav-wrapper{
+        background-size: contain;
+    }
+}
+
+@media (max-width: 1350px){
+    .products-wrapper{
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .brands-wrapper{
+        width: 60%;
+        margin: 0 auto;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 1160px){
+    #user-nav-wrapper{
+        background-position: right top;
+        background-size: 100% 80px;
+    }
+}
+
+@media (max-width: 1050px){
+    #page-heading h1{
+        font-size: 1.35em;
+    }
+
+    .brands-wrapper{
+        width: 85%;
+    }
+
+    .product-card .image{
+        margin: 0 -180px;
+    }
+}
+
+@media (max-width: 820px){
+    html,
+    body{
+        width: 100%;
+        overflow-x: hidden;
+    }
+    
+    .brands-wrapper{
+        width: 100%;
+    }
+
+    .products-wrapper{
+        display: block;
+    }
+
+    .product-card{
+        margin: 0 auto 30px;
+        width: 60%;
+    }
+}
+
+@media (max-width: 630px){
+    .brands-wrapper{
+        display: block;
+    }
+
+    .brand-card{
+        margin: 0 auto 30px;
+    }
+
+    .product-card{
+        width: auto;
+    }
+
+    .header-flash{
+        background: var(--royalblue);
+    }
+
+    header{
+        background: var(--royalblue);
+    }
+
+    #logo-wrapper img{
+        width: 100%;
+    }
+
+    #page-heading{
+        padding: 0 15px;
+    }
+    
+    #page-heading h1{
+        color: #fff;
+    }
+
+    #burger-menu-wrapper{
+        display: grid;
+        align-items: center;
+        justify-items: center;
+    }
+
+    #burger-menu-wrapper img{
+        cursor: pointer;
+    }
+
+    #user-nav-wrapper{
+        position: absolute;
+        background: #fff;
+        width: 100%;
+        height: 100vh;
+        display: block;
+        z-index: 100;
+        padding: var(--whitespace);
+    }
+}
+
+@media (max-width: 550px){
+    .product-card{
+        width: auto;
+    }
 }

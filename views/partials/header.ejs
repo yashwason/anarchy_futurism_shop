@@ -16,7 +16,10 @@
 
     <section id="logo-wrapper">
         <a href="/">
-            <img src="/images/common/logos/black-logo.svg" alt="Anarchy Futurism logo">
+            <picture>
+                <source media="(max-width: 630px)" srcset="/images/common/logos/white-logo.svg">
+                <img src="/images/common/logos/black-logo.svg" alt="Logo">
+            </picture>
         </a>
     </section>
     <section id="page-heading">
@@ -38,5 +41,8 @@
             <a href="/wishlist"><i class="far fa-heart"></i></a>
             <a href="/cart"><i class="fas fa-shopping-cart"></i></a>
         </nav>
+    </section>
+    <section id="burger-menu-wrapper">
+        <img src="/images/common/icons/burger.png" alt="Menu">
     </section>
 </header>

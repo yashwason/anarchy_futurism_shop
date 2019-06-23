@@ -13,12 +13,7 @@ const express = require('express'),
 
     
 // DB Setup
-mongoose.connect(process.env.DB_URL, {
-    useNewUrlParser: true,
-    dbName: process.env.DB_NAME
-});
-
-mongoose.connection.on(`connected`, () => { console.log(`DB has connected`); });
+require(`./config/mongoose`);
 
 
 // Configurating PassportJs for authentication
@@ -75,6 +70,18 @@ app.use(`/product`, PRODUCTROUTES);
 app.use(`/products`, PRODUCTSROUTES);
 app.use(`/user`, USERROUTES);
 app.use(`/brands`, BRANDROUTES);
+
+
+
+
+
+const sendMail = require(`./handlers/mail`);
+sendMail(`yashwason@gmail.com`, `Test Email`, `This is my first OAuth2 email`)
+.then(data => console.dir(`data returned = ${data}`))
+.catch(err => {});
+
+
+
 
 
 // Server setup

@@ -8,6 +8,7 @@
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
     overflow: hidden;
+    height: calc(100vh - 100px);
 }
 
 .hero-left{
@@ -97,4 +98,85 @@
     /* Used by BasicScroll */
     opacity: var(--opacity);
     transform: scale(var(--scale));
+}
+
+
+/* MEDIA QUERIES */
+@media (max-width: 1300px){
+    .hero-left{
+        width: 250px;
+    }
+    
+    .hero-right{
+        width: 250px;
+    }
+    
+    .hero-middle-wrapper h1{
+        font-size: 4.8em;
+    }
+
+    .hero-middle-wrapper .hero-middle{
+        width: 450px;
+    }
+}
+
+@media (max-width: 950px){
+    .hero-left{
+        width: 150px;
+    }
+    
+    .hero-right{
+        width: 150px;
+    }
+    
+    .hero-middle-wrapper h1{
+        font-size: 4em;
+    }
+
+    .hero-middle-wrapper .hero-middle{
+        width: 450px;
+    }
+}
+
+@media (max-width: 760px){
+    .hero .wrapper{
+        display: block;
+    }
+
+    .hero-left,
+    .hero-right{
+        display: none;
+    }
+    
+    .hero-middle-wrapper{
+        height: calc(100vh - 100px);        
+        width: 100%;
+        margin: 0 auto;
+        display: grid;
+        align-items: center;
+        justify-items: center;
+    }
+
+    .hero-middle-wrapper h1{
+        font-size: 4em;
+        left: 120px;
+    }
+
+    .hero-middle-wrapper .hero-middle{
+        width: 450px;
+        transform: rotate(75deg);
+    }
+}
+
+@media (max-width: 530px){
+    .hero-middle-wrapper h1{
+        font-size: 4em;
+        left: 80px;
+    }
+
+    .hero-middle-wrapper .hero-middle{
+        width: 90%;
+        margin: 0 auto;
+        transform: rotate(75deg);
+    }
 }
