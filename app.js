@@ -26,7 +26,7 @@ app.use(express.static(__dirname + `/public`));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(session({
-    secret: process.env.SESSION_SECRET,
+    secret: `h682scdf75g6fd54gf56dh6ev465fdgxv6gf8d1s5fdg57g6565fhd68`,
     saveUninitialized: false,
     resave: false,
     store: new MongoStore({
