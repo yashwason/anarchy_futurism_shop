@@ -17,11 +17,11 @@
                 <% if(userIsLoggedIn){ %>
                 <span><i class="far fa-user"></i></span>
                 <section class="dropdown">
-                    <a href="/user/orders">Your Orders <i class="fas fa-tags"></i></a>
-                    <a href="/user/logout">Logout <i class="fas fa-sign-out-alt"></i></a>
+                    <a href="/orders">Your Orders <i class="fas fa-tags"></i></a>
+                    <a href="/logout">Logout <i class="fas fa-sign-out-alt"></i></a>
                 </section>
                 <% } else{ %>
-                <a href="/user/signin"><i class="far fa-user"></i></a>
+                <a href="/signin"><i class="far fa-user"></i></a>
                 <% } %>
             </div>
             <a href="/wishlist"><i class="far fa-heart"></i></a>
@@ -30,19 +30,19 @@
     </section>
 </header>
 
-<form action="/user/signup" method="POST">
+<form action="/signin" method="POST">
     <input type="email" name="email" id="email" placeholder="E-mail" required>
     <input type="password" name="password" id="password" placeholder="Password" required>
-    <input type="text" name="f_name" id="f_name" placeholder="First Name" required>
-    <input type="text" name="l_name" id="l_name" placeholder="Last Name" required>
-
+    
     <input type="hidden" name="_csrf" id="_csrf" value="<%= csrfToken %>">
 
     <% errMsgs.forEach((msg) => { %>
     <p class="err-msg"><%= msg %></p>
     <% }); %>
 
-    <button type="submit" class="custom-link2">Create Account</button>
+    <button type="submit" class="custom-link2">Login</button>
+
+    <p>Aren't a Anarchy Futurist yet? <a href="/signup">Create a new account!</a></p>
 </form>
 
 <%- include ../partials/footer %>

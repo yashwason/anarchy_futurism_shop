@@ -20,25 +20,13 @@ require(`./config/mongoose`);
 require(`./config/passport`);
 
 
-// Router files
-const INDEXROUTES = require(`./routes/index`),
-    CARTROUTES = require(`./routes/cart`),
-    CHECKOUTROUTES = require(`./routes/checkout`),
-    WISHLISTROUTES = require(`./routes/wishlist`),
-    PRODUCTSROUTES = require(`./routes/category`),
-    PRODUCTROUTES = require(`./routes/product`),
-    BRANDROUTES = require(`./routes/brand`),
-    USERROUTES = require(`./routes/user`);
-
-
 // App configurations
 app.set(`view engine`, `ejs`);
 app.use(express.static(__dirname + `/public`));
-app.use(morgan(':method :url - :status - :response-time ms')); // logging http activity
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(session({
-    secret: `This is Anarchy Futurism people! Project started in 2019`,
+    secret: process.env.SESSION_SECRET,
     saveUninitialized: false,
     resave: false,
     store: new MongoStore({
@@ -51,37 +39,14 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use((req, res, next) => {
-    res.locals.errMsgs = req.flash(`error`);
-    res.locals.successMsgs = req.flash(`success`);
-    res.locals.userIsLoggedIn = req.isAuthenticated();
-    res.locals.cartSession = req.session.cart;
-    
-    next();
-});
+if(process.env.MODE === `dev`){
+    app.use(morgan(':method :url - :status - :response-time ms')); // logging http activity
+}
 
 
-// Using routes
-app.use(INDEXROUTES);
-app.use(CARTROUTES);
-app.use(WISHLISTROUTES);
-app.use(CHECKOUTROUTES);
-app.use(`/product`, PRODUCTROUTES);
-app.use(`/products`, PRODUCTSROUTES);
-app.use(`/user`, USERROUTES);
-app.use(`/brands`, BRANDROUTES);
-
-
-
-
-
-const sendMail = require(`./handlers/mail`);
-sendMail(`yashwason@gmail.com`, `Test Email`, `This is my first OAuth2 email`)
-.then(data => console.dir(`data returned = ${data}`))
-.catch(err => {});
-
-
-
+// Routes
+const routes = require(`./routes/_all`);
+app.use(routes);
 
 
 // Server setup

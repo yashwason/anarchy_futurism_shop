@@ -1,12 +1,26 @@
 const mongoose = require(`mongoose`);
 
 const OrderSchema = new mongoose.Schema({
-    items: [String],
-    order_id: String,
-    payment_id: String,
-    user_id: String,
-    amount: Number,
-    created_at: String
+    items: {
+        type: Array,
+        required: true
+    },
+    gateway_payment_id: {
+        type: String,
+        trim: true
+    },
+    user_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: `User`,
+        trim: true
+    },
+    amount: {
+        type: Number,
+        required: true
+    }
+}, {
+    timestamps: true,
+    strict: false
 });
 
 module.exports = mongoose.model(`Order`, OrderSchema);

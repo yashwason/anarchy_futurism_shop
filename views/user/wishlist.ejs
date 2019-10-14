@@ -1,0 +1,13 @@
+<%- include ../partials/head %>
+
+<%- include ../partials/header %>
+
+<div class="products-wrapper">
+    <% products.forEach((product) => { %>
+    <%- include ../shop/partials/product-card %>
+    <% }); %>
+</div>
+
+<%- include ../partials/footer %>
+
+<%- include ../partials/end %>

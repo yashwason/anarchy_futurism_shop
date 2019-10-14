@@ -1,8 +1,6 @@
 const {check, validationResult} = require(`express-validator/check`);
 
-let middleware = {};
-
-middleware.checkUserCredentials = [
+const checkUserCredentials = [
     check(`email`).isEmail().withMessage(`You entered an invalid e-mail`),
 
     check(`password`)
@@ -10,7 +8,7 @@ middleware.checkUserCredentials = [
     .isAlphanumeric().withMessage(`Password must be a combination of alphabets and numbers`)
 ];
 
-middleware.validateUserCredentials = (req, res, next) => {
+function validateUserCredentials(req, res, next){
     const errors = validationResult(req);
     if (!errors.isEmpty()){
         let errMsgs = errors.array().map((error) => {
@@ -20,21 +18,21 @@ middleware.validateUserCredentials = (req, res, next) => {
         return res.redirect(req.originalUrl);
     }
     return next();
-};
+}
 
-middleware.isLoggedIn = (req, res, next) => {
+function isLoggedIn(req, res, next){
     if(req.isAuthenticated()) return next();
 
     req.flash(`error`, `You need to be logged in for that!`);
-    res.redirect(`/user/signin`);
+    res.redirect(`/signin`);
 }
 
-middleware.notLoggedIn = (req, res, next) => {
+function notLoggedIn(req, res, next){
     if(!req.isAuthenticated()) return next();
 
     req.flash(`error`, `Cannot go there when logged in!`);
     res.redirect(`/`);
-};
+}
 
 
-module.exports = middleware;
+module.exports = { checkUserCredentials, validateUserCredentials, isLoggedIn, notLoggedIn };

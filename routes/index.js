@@ -5,14 +5,25 @@ const express = require(`express`),
 
 
 router.get(`/`, async (req, res) => {
-    let products = await Product.find({}).sort({piecesSold: -1}).limit(3);
-    let brands = await Brand.find({}).limit(4);
-
-    res.render(`home`, {
-        docTitle: `Welcome`,
-        products: products,
-        brands: brands
-    });
+    let productList = [];
+    
+    Product.find({}).sort({piecesSold: -1}).limit(3)
+    .then((products) => {
+        productList = products;
+        return Brand.find({}).limit(4)
+    })
+    .then((brands) => {
+        res.render(`index`, {
+            docTitle: `Welcome`,
+            products: productList,
+            brands
+        });
+    })
+    .catch((err) => {
+        console.log(err);
+        req.flash(`error`, `Something didn't load right. Please try again.`);
+        return res.redirect(`/login`);
+    })
 });
 
 module.exports = router;

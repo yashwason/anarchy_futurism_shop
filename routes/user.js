@@ -1,81 +1,62 @@
 const express = require(`express`),
     router = express.Router(),
-    csrf = require(`csurf`),
-    passport = require(`passport`),
-    middleware = require(`../middleware`),
-    Order = require(`../models/order`);
+    Order = require(`../models/order`),
+    authMiddleware = require(`../middleware/auth`);
+    
 
-
-const csrfProtection = csrf();
-router.use(csrfProtection);
-
-
-router.get(`/signin`,
-middleware.notLoggedIn,
-(req, res) => {
-    res.render(`user/signin`, {
-        docTitle: `Account Sign In`,
-        pageHeading: `LOGIN TO YOUR ACCOUNT`,
-        csrfToken: req.csrfToken()
-    });
+router.get(`/wishlist`,
+    authMiddleware.isLoggedIn,
+    async (req, res) => {
+        try{
+            const products = await req.user.generateWishlist(req.user.wishlist);
+            
+            res.render(`user/wishlist`, {
+                docTitle: `Wishlist`,
+                pageHeading: `YOUR PRODUCT WISHLIST`,
+                products
+            });
+        }
+        catch(err){
+            console.log(err);
+            req.flash(`error`, `Something went wrong. Please try again`);
+            return res.redirect(`back`);
+        }
 });
 
-router.post(`/signin`,
-middleware.notLoggedIn,
-middleware.checkUserCredentials,
-middleware.validateUserCredentials,
-passport.authenticate(`local-signin`, {
-    successRedirect: `/`,
-    failureRedirect: `/user/signin`,
-    failureFlash: true,
-    successFlash: true
-}));
+router.get(`/add-to-wishlist/:id`,
+    authMiddleware.isLoggedIn,
+    async (req, res) => {
+        try{
+            const productId = req.params.id;
+            const currentUser = req.user;
 
-router.get(`/signup`,
-middleware.notLoggedIn,
-(req, res) => {
-    res.render(`user/signup`, {
-        docTitle: `Register`,
-        pageHeading: `CREATE A NEW ACCOUNT`,
-        csrfToken: req.csrfToken()
-    });
+            await req.user.addToWishlist(req, currentUser, productId);
+            
+            res.redirect(`/wishlist`);
+        }
+        catch(err){
+            console.log(err);
+            req.flash(`error`, `Something went wrong. Please try again`);
+            return res.redirect(`back`);
+        }
 });
-
-router.post(`/signup`,
-middleware.notLoggedIn,
-middleware.checkUserCredentials,
-middleware.validateUserCredentials,
-passport.authenticate(`local-signup`, {
-    successRedirect: `/`,
-    failureRedirect: `/user/signup`,
-    failureFlash: true,
-    successFlash: true
-}));
 
 router.get(`/orders`,
-middleware.isLoggedIn,
-(req, res) => {
-    Order.find({user_id: req.user.id})
-    .then((orders) => {
-        res.render(`orders`, {
-            docTitle: `Your Orders`,
-            pageHeading: `YOUR ORDER HISTORY`,
-            orders
+    authMiddleware.isLoggedIn,
+    (req, res) => {
+        Order.find({user_id: req.user.id})
+        .then((orders) => {
+            res.render(`user/orders`, {
+                docTitle: `Your Orders`,
+                pageHeading: `YOUR ORDER HISTORY`,
+                orders
+            });
+        })
+        .catch((err) => {
+            console.log(`Error finding orders in DB. Error: ${err}`);
+            req.flash(`error`, `Something went wrong. Please try again.`);
+            return res.redirect(`/`);
         });
-    })
-    .catch((err) => {
-        console.log(`Error finding orders in DB. Error: ${err}`);
-    });
 });
-
-
-router.get(`/logout`,
-middleware.isLoggedIn,
-(req, res,) => {
-    req.logout();
-    req.flash(`success`, `Successfully logged out!`);
-    res.redirect(`/`);
-});
-
 
 module.exports = router;
