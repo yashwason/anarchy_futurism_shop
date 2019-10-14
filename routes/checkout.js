@@ -4,9 +4,9 @@ const express = require(`express`),
     Cart = require(`../models/cart`),
     Product = require(`../models/product`),
     authMiddleware = require(`../middleware/auth`);
-    
 
-router.use(authMiddleware.isLoggedIn);
+
+// router.use(authMiddleware.isLoggedIn);
 
 router.get(`/checkout`,
     (req, res) => {
