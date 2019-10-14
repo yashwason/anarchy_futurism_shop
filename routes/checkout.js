@@ -3,9 +3,8 @@ const express = require(`express`),
     Order = require(`../models/order`),
     Cart = require(`../models/cart`),
     Product = require(`../models/product`),
-    authMiddleware = require(`../middleware/auth`),
-    instance = require(`../config/razorpay`);
-
+    authMiddleware = require(`../middleware/auth`);
+    
 
 router.use(authMiddleware.isLoggedIn);
 
