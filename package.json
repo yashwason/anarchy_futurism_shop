@@ -4,12 +4,13 @@
   "description": "e-commerce solution build using MongoDB + NodeJs + Express",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node app.js",
+    "build": "webpack --mode production"
   },
   "author": "Yash Wason",
   "license": "ISC",
   "dependencies": {
+    "basicscroll": "^3.0.2",
     "bcrypt": "^3.0.6",
     "body-parser": "^1.19.0",
     "connect-flash": "^0.1.1",
@@ -27,5 +28,14 @@
     "nodemailer": "^6.2.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "webpack": "^4.41.1",
+    "webpack-cli": "^3.3.9"
   }
 }

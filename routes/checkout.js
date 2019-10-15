@@ -6,7 +6,7 @@ const express = require(`express`),
     authMiddleware = require(`../middleware/auth`);
 
 
-// router.use(authMiddleware.isLoggedIn);
+router.use(authMiddleware.isLoggedIn);
 
 router.get(`/checkout`,
     (req, res) => {

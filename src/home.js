@@ -1,3 +1,5 @@
+import * as basicScroll from 'basicscroll';
+
 basicScroll.create({
     elem: document.querySelector('.hero .hero-middle-wrapper .hero-middle'),
     from: 'center-center',
